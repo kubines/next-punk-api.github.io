@@ -2,6 +2,7 @@
 
 const nextConfig = {
   reactStrictMode: true,
+  pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
   async redirects() {
     return [
       {
@@ -10,16 +11,6 @@ const nextConfig = {
         permanent: true,
       },
     ]
-  },
-  images: {
-    remotePatterns: [
-      {
-        protocol: '',
-        hostname: '',
-        port: '',
-        pathname: '/beer/**',
-      },
-    ],
   },
 };
 
