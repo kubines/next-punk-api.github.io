@@ -11,8 +11,6 @@ export function Header() {
     return router.route === `${beerUrl}/[id]`;
   }, [router.route]);
 
-  console.log(router);
-
   return (
     <nav 
       className="navbar text-bg-success bg-gradient p-3"

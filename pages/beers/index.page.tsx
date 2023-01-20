@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 
@@ -13,10 +13,14 @@ export default function Home() {
   const [listOfBeers, setListOfBeers] = useState<any[]>();
   const [loading, setLoading] = useState(true);
 
+  const disableClear = useMemo(() => !search, [search]);
+
   const onClear = useCallback(() => {
-    setSearch(undefined);
-    setPage(1);
-  }, []);
+    if (!disableClear) {
+      setSearch(undefined);
+      setPage(1);
+    }
+  }, [disableClear]);
 
   const onChange = useCallback((value: string) => {
     setSearch(value);
@@ -40,8 +44,6 @@ export default function Home() {
       .catch((error) => console.error('error', error))
       .finally(() => setLoading(false));
   }, [page, search]);
-
-  useEffect(() => console.log(listOfBeers), [listOfBeers]);
 
   return (
     <Layout>
