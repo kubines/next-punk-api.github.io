@@ -1,5 +1,5 @@
 export interface SearchProps {
-  value?: string | number,
+  value?: string,
   onChange: (val: string) => void,
   onClear?: VoidFunction,
   className?: string,
