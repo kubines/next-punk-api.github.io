@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
-import { GetServerSideProps } from 'next';
+import { GetServerSidePropsContext } from 'next';
 import axios from 'axios';
 
 import { Layout } from 'components';
@@ -44,8 +44,8 @@ export default function Id({ beer }: { beer: any }) {
   );
 }
 
-export async function getServerSideProps(context: GetServerSideProps) {
-  const data = await axios<any, any>(`https://api.punkapi.com/v2/beers/${String(context.query.id)}`)
+export async function getServerSideProps({ query }: GetServerSidePropsContext) {
+  const data = await axios(`https://api.punkapi.com/v2/beers/${String(query.id)}`)
     .then((res) => res.data)
     .catch((error) => console.error('error', error));
 
