@@ -101,6 +101,8 @@ export default function Home() {
           </div>
           <div className="container p-4">
             <Pagination
+              perPage={12}
+              pagesCount={listOfBeers?.length}
               currentPage={page}
               onPageChange={onChangePage}
             />

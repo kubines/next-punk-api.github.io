@@ -6,8 +6,12 @@ import { PaginationProps } from './types';
 export function Pagination({
   currentPage,
   onPageChange,
+  pagesCount,
+  perPage,
 }: PaginationProps) {
   const disablePrevious = useMemo(() => currentPage < 2 && 'disabled', [currentPage]);
+
+  const disabledNext = useMemo(() => Number(pagesCount) < perPage && 'disabled', [pagesCount, perPage]);
   
   const onChange = useCallback((value: number) => {    
     onPageChange(value);
@@ -35,10 +39,10 @@ export function Pagination({
             {currentPage}
           </span>
         </li>
-        <li className="page-item">
+        <li className={clsx('page-item', disabledNext)}>
           <a
             className="page-link"
-            href="_#"
+            href="_"
             onClick={(e) => {
               e.preventDefault();
               onChange(1);
